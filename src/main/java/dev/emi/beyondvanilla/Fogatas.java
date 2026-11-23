@@ -1,6 +1,8 @@
 package dev.emi.beyondvanilla;
 
-
+import net.minecraft.world.level.ClipContext;
+import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.HitResult;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -117,10 +119,24 @@ public final class Fogatas {
 
             if ((estado.is(Blocks.CAMPFIRE)
                     || estado.is(Blocks.SOUL_CAMPFIRE))
-                    && estado.getValue(CampfireBlock.LIT)) {
+                    && estado.getValue(CampfireBlock.LIT)
+                && fogataVisible (jugador, posicion)) {
                 return true;
             }
         }
         return false;
+    }
+    private boolean fogataVisible(ServerPlayer jugador, BlockPos posicion) {
+        Vec3 destino = Vec3.atBottomCenterOf(posicion).add(0, 0.25, 0);
+
+        BlockHitResult impacto = jugador.serverLevel().clip(new ClipContext(
+                jugador.getEyePosition(),
+                destino,
+                ClipContext.Block.COLLIDER,
+                ClipContext.Fluid.NONE,
+                jugador));
+
+        return impacto.getType() == HitResult.Type.MISS
+                || impacto.getBlockPos().equals(posicion);
     }
 }
