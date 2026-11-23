@@ -1,0 +1,13 @@
+.gradle/
+build/
+run/
+runs/
+out/
+.idea/
+*.iml
+*.log
+.env
+.env.*
+!.env.example
+.wakatime.cfg
+.wakatime/
