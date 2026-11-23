@@ -1,0 +1,26 @@
+modLoader="javafml"
+loaderVersion="[47,)"
+license="All Rights Reserved"
+
+
+[[mods]]
+modId="beyondvanilla"
+version = "0.1.0"
+displayName="Beyond Vanilla"
+description= '''
+A Minecraft mod project for a hackathon.
+'''
+
+[[dependencies.beyondvanilla]]
+modId="forge"
+mandatory=true
+versionRange="[47.4.29,48)"
+ordering="NONE"
+side="BOTH"
+
+[[dependencies.beyondvanilla]]
+modId="minecraft"
+mandatory = true
+versionRange="[1.20.1,1.20.2)"
+ordering="NONE"
+side="BOTH"
